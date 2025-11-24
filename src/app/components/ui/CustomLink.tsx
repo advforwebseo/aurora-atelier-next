@@ -13,7 +13,7 @@ export const CustomLink = ({ href, className, text }: Props) => {
     <Link
       href={href}
       className={cn(
-        "rounded-2xl bg-[#CFE1E7] px-6 py-1 font-semibold transition-colors hover:bg-[#abceda]",
+        "flex h-fit items-center justify-center rounded-4xl bg-[#CFE1E7] px-12 py-2 text-center text-sm font-semibold transition-colors hover:bg-[#abceda]",
         className || ""
       )}
     >

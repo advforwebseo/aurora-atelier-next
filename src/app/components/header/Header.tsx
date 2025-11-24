@@ -1,3 +1,4 @@
+import { Hamburger } from "./Hamburger";
 import { LoginLink } from "./LoginLink";
 import { Logo } from "./Logo";
 import { Nav } from "./Nav";
@@ -8,6 +9,7 @@ export const Header = () => {
       <Logo />
       <Nav />
       <LoginLink />
+      <Hamburger />
     </header>
   );
 };
