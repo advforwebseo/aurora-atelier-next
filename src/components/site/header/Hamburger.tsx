@@ -9,7 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { NavLink } from "./NavLink";
+import { NavLink } from "../../shared/NavLink";
 
 export function Hamburger() {
   return (

@@ -1,4 +1,4 @@
-import { CustomFooterLink } from "../ui/CustomFooterLink";
+import { CustomFooterLink } from "../../shared/CustomFooterLink";
 
 export const Footer = () => {
   return (

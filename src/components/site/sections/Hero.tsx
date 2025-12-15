@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { CustomLink } from "../ui/CustomLink";
+import { CustomLink } from "../../shared/CustomLink";
 
 export const Hero = () => {
   return (

@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 import { PRODUCT_CARD_SIZES } from "@/constants/constants";
 
-import { CustomLink } from "../ui/CustomLink";
+import { CustomLink } from "../../shared/CustomLink";
 
 export const Love = () => {
   return (

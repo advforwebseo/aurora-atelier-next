@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { PRODUCT_CARD_SIZES } from "@/constants/constants";
 
-import { CustomLink } from "../ui/CustomLink";
+import { CustomLink } from "../../shared/CustomLink";
 
 export const Design = () => {
   return (

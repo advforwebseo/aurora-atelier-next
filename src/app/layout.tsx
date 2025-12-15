@@ -1,19 +1,19 @@
 import "./globals.css";
 
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
+import { jsonLdSeed } from "@/lib/seo/jsonld/seed";
+import { baseMetadata } from "@/lib/seo/seed";
 
-import { siteMetadata } from "./meta/site-metadata";
+export const metadata: Metadata = baseMetadata;
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-roboto",
 });
-
-export const metadata: Metadata = siteMetadata;
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -22,10 +22,16 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <meta name="apple-mobile-web-app-title" content="Aurora Atelier" />
       <body className={`${roboto.variable} antialiased`}>
         <main className="min-h-screen">{children}</main>
+
         <Toaster />
+
+        <script
+          id="jsonld-seed"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSeed) }}
+        />
       </body>
     </html>
   );

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
-import { CustomLink } from "../ui/CustomLink";
+import { CustomLink } from "../../shared/CustomLink";
 
 export const Sustainability = () => {
   return (
     <section className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className="relative h-[570px] w-full">
+        <div className="relative h-142.5 w-full">
           <Image
             src="/pages/home/sections/sustainability/sustainability.webp"
             alt="Sustainability"
@@ -23,7 +23,7 @@ export const Sustainability = () => {
             <p className="text-center text-5xl font-semibold">An Ethical Approach</p>
           </div>
           <div className="flex flex-col items-center gap-10">
-            <p className="max-w-[450px] text-center">
+            <p className="max-w-112.5 text-center">
               Making jewelry requires responsibility to the earth that creates our materials and
               respect for the people who inhabit it. From day one, we committed to creating designs
               of ethical origins from mine to market. Today, we’re a proud leader in sustainable
