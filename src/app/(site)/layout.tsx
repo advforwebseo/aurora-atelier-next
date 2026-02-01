@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-import { Footer } from "@/components/site/footer/Footer";
-import { Header } from "@/components/site/header/Header";
-import { homePageSeo } from "@/lib/seo/home";
+import { Footer } from "@/app/(site)/ui/footer/Footer";
+import { Header } from "@/app/(site)/ui/header/Header";
+import { homePageSeo } from "@/seo/home";
 
 export const metadata: Metadata = homePageSeo;
 

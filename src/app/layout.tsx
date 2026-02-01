@@ -4,8 +4,8 @@ import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
-import { jsonLdSeed } from "@/lib/seo/jsonld/seed";
-import { baseMetadata } from "@/lib/seo/seed";
+import { jsonLdSeed } from "@/seo/jsonld/seed";
+import { baseMetadata } from "@/seo/seed";
 
 export const metadata: Metadata = baseMetadata;
 
