@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { RegisterForm } from "./forms/RegisterForm";
+import { LoginForm } from "./ui/LoginForm";
+import { RegisterForm } from "./ui/RegisterForm";
 
 export const AuthContent = () => {
   return (
@@ -35,7 +36,7 @@ export const AuthContent = () => {
           </TabsList>
 
           <TabsContent value="login" className="px-6 py-4">
-            Login form here
+            <LoginForm />
           </TabsContent>
 
           <TabsContent value="register" className="px-6 py-4">

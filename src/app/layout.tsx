@@ -7,6 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { jsonLdSeed } from "@/seo/jsonld/seed";
 import { baseMetadata } from "@/seo/seed";
 
+import ClientProviders from "./providers/ClientProviders";
+
 export const metadata: Metadata = baseMetadata;
 
 const roboto = Roboto({
@@ -23,7 +25,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${roboto.variable} antialiased`}>
-        <main className="min-h-screen">{children}</main>
+        <ClientProviders>
+          <main className="min-h-screen">{children}</main>
+        </ClientProviders>
 
         <Toaster />
 
