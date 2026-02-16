@@ -3,9 +3,10 @@
 import { z } from "zod";
 
 import prisma from "@/lib/prisma";
-import { registerRateLimit } from "@/lib/rate-limit";
 
-import { hashPassword } from "../password";
+import { hashPassword } from "../helpers/password";
+import { registerRateLimit } from "../helpers/rate-limit";
+import { AuthResponse } from "../types/auth.types";
 
 const registerDtoSchema = z.object({
   email: z.string().max(255),
@@ -13,44 +14,46 @@ const registerDtoSchema = z.object({
   social_media: z.string().max(50),
 });
 
-interface RegisterActionData {
-  email: string;
-  password: string;
-  social_media: string;
-}
+type RegisterActionData = z.infer<typeof registerDtoSchema>;
 
-export async function registerUser(data: RegisterActionData) {
-  const { success } = await registerRateLimit.limit(data.email.toLowerCase());
+export async function registerUser(data: RegisterActionData): Promise<AuthResponse> {
+  try {
+    const { success } = await registerRateLimit.limit(data.email.toLowerCase());
 
-  if (!success) {
+    if (!success) {
+      return { success: false, error: "Too many requests" };
+    }
+
+    const parsed = registerDtoSchema.safeParse(data);
+
+    if (!parsed.success) {
+      return { success: false, error: "Invalid data" };
+    }
+
+    const existingUser = await prisma.user.findUnique({
+      where: { email: parsed.data.email.toLowerCase() },
+    });
+
+    if (existingUser) {
+      return { success: false, error: "Invalid credentials" };
+    }
+
+    const passwordHash = await hashPassword(parsed.data.password);
+
+    await prisma.user.create({
+      data: {
+        email: parsed.data.email.toLowerCase(),
+        passwordHash,
+        social_media: parsed.data.social_media,
+      },
+    });
+
     return {
-      error: "Too many requests",
+      success: true,
+      message: "Registration successful",
     };
+  } catch (error) {
+    console.error("Registration error:", error);
+    return { success: false, error: "An error occurred during registration" };
   }
-
-  const parsed = registerDtoSchema.parse(data);
-
-  const existingUser = await prisma.user.findUnique({
-    where: { email: parsed.email.toLowerCase() },
-  });
-
-  if (existingUser) {
-    return {
-      error: "Invalid credentials",
-    };
-  }
-  const passwordHash = await hashPassword(parsed.password);
-
-  await prisma.user.create({
-    data: {
-      email: parsed.email.toLowerCase(),
-      passwordHash,
-      social_media: parsed.social_media,
-    },
-  });
-
-  return {
-    success: true,
-    message: "Registration successful",
-  };
 }

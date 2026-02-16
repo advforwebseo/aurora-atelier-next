@@ -3,7 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 
 import prisma from "@/lib/prisma";
 
-import { verifyPassword } from "./password";
+import { verifyPassword } from "./helpers/password";
 
 interface CredentialsInput {
   email?: string;
